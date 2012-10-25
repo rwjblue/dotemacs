@@ -1,6 +1,6 @@
 (setq rwj-emacs-config-dir (file-name-directory load-file-name))
 (setq rwj-backup-dir (expand-file-name "backups" rwj-emacs-config-dir))
-(setq rwj-init-dir (expand-file-name "modules" rwj-emacs-config-dir))
+(setq rwj-config-dir (expand-file-name "config" rwj-emacs-config-dir))
 
 
 (unless (file-exists-p rwj-backup-dir)
@@ -50,7 +50,7 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
-;; Load all elisp files in ./modules
-(if (file-exists-p rwj-init-dir)
-    (dolist (file (directory-files rwj-init-dir t "\\.el$"))
+;; Load all elisp files in ./config
+(if (file-exists-p rwj-config-dir)
+    (dolist (file (directory-files rwj-config-dir t "\\.el$"))
       (load file)))
