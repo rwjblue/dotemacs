@@ -1,5 +1,6 @@
-elpa/
-backups/
-url/
+/elpa/
+/el-get/
+/backups/
+url/cookies
 .#*
 *~

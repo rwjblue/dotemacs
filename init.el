@@ -10,24 +10,18 @@
 (setq custom-file
       (expand-file-name "emacs-customizations.el" rwj-emacs-config-dir))
 
-;; setup packages
 (require 'cl)
-(require 'package)
 
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-	     '("ELPA" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-;; required because of a package.el bug
-(setq url-http-attempt-keepalives nil)
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(el-get 'sync)
 
 ;; list of packages to ensure are loaded at launch
 (setq rwj-packages
@@ -38,18 +32,7 @@
 	scss-mode yasnippet xml-rpc molokai-theme solarized-theme
 	zenburn-theme))
 
-(defun rwj-packages-installed-p ()
-  (loop for p in rwj-packages
-	when (not (package-installed-p p)) do (return nil)
-	finally (return t)))
-
-(unless (rwj-packages-installed-p)
-  ;; check for new packages (package versions)
-  (package-refresh-contents)
-  ;; install the missing packages
-  (dolist (p rwj-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+(el-get 'sync rwj-packages)
 
 ;; Load all elisp files in ./config
 (if (file-exists-p rwj-config-dir)
