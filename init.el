@@ -32,6 +32,7 @@
 ;; list of packages to ensure are loaded at launch
 (setq rwj-packages
       '(ack-and-a-half coffee-mode eieio exec-path-from-shell
+	flymake flymake-ruby flymake-shell
 	expand-region gh gist guru-mode haml-mode htmlize inflections
 	inf-ruby magit magithub multi-term org-plus-contrib rinari rvm
 	scss-mode yasnippet xml-rpc molokai-theme solarized-theme
