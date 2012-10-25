@@ -39,3 +39,6 @@
 
 ;; smart pairing for all
 (electric-pair-mode t)
+
+;; make the file executable if it is a script (i.e. if it has #!)
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
