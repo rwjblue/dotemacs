@@ -1,3 +1,5 @@
+(add-to-list 'custom-theme-load-path (expand-file-name "zenburn-theme" rwj-vendor-dir))
+
 ;; Molokai is a nice fruity high-contrast theme. Nice for screencasts,
 ;; demos, and presentations.
 
