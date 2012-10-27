@@ -9,6 +9,10 @@
 
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
 
+; setup rvm to activate the correct ruby (based on .rvmrc file)
+(add-hook 'ruby-mode-hook
+	  (lambda () (rvm-activate-corresponding-ruby)))
+
 ; setup inf-ruby to use pry session
 (add-to-list 'inf-ruby-implementations '("pry" . "pry"))
 (setq inf-ruby-default-implementation "pry")
