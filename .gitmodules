@@ -1,6 +1,8 @@
 [submodule "vendor/zenburn-theme"]
 	path = vendor/zenburn-theme
 	url = git://github.com/bbatsov/zenburn-emacs.git
+	ignore = dirty
 [submodule "vendor/nxhtml"]
 	path = vendor/nxhtml
 	url = git://github.com/emacsmirror/nxhtml.git
+	ignore = dirty
