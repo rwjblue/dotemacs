@@ -1,10 +1,12 @@
-(add-hook 'prog-mode-hook
-	  (lambda ()
-	    (linum-mode 1)            ;; line numbers
-	    (whitespace-mode 1)       ;; show whitespace
-	    (setq truncate-lines t)   ;; truncate line (no word wrap)
-	    (add-hook 'before-save-hook 'whitespace-cleanup nil t)))
+(defun rwj-prog-mode-setup ()
+  (linum-mode 1)
+  (whitespace-mode 1)
+  (setq truncate-lines t)
+  (setq indent-tabs-mode nil)
+  (add-hook 'before-save-hook (lambda() (untabify (point-min) (point-max))))
+  (add-hook 'before-save-hook 'whitespace-cleanup nil t))
 
+(add-hook 'prog-mode-hook 'rwj-prog-mode-setup)
 
 ;; associate rhtml-mode with .html.erb files
 (autoload 'rhtml-mode "rhtml-mode" "RHTML Mode" t)
