@@ -3,8 +3,8 @@
   (whitespace-mode 1)
   (setq truncate-lines t)
   (setq indent-tabs-mode nil)
-  (add-hook 'before-save-hook (lambda() (untabify (point-min) (point-max))))
-  (add-hook 'before-save-hook 'whitespace-cleanup nil t))
+  (add-hook 'before-save-hook (untabify (point-min) (point-max)))
+  (add-hook 'before-save-hook 'whitespace-cleanup))
 
 (add-hook 'prog-mode-hook 'rwj-prog-mode-setup)
 
