@@ -41,6 +41,9 @@
                                          try-complete-lisp-symbol-partially
                                          try-complete-lisp-symbol))
 
+;; set hippie expand to take over
+(global-set-key (kbd "M-/") 'hippie-expand)
+
 ;; smart pairing for all
 (electric-pair-mode t)
 
