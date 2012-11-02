@@ -10,10 +10,15 @@
 
 (add-hook 'prog-mode-hook 'rwj-prog-mode-setup)
 
-;; associate rhtml-mode with .html.erb files
-(autoload 'rhtml-mode "rhtml-mode" "RHTML Mode" t)
-(add-to-list 'auto-mode-alist '("\\.rhtml$" rhtml-mode))
-(add-to-list 'auto-mode-alist '("\\.html.erb$" rhtml-mode))
+(setq nxhtml-global-minor-mode t
+      mumamo-chunk-coloring 'submode-colored
+      nxhtml-skip-welcome t
+      indent-region-mode t
+      rng-nxml-auto-validate-flag nil
+      nxml-degraded t)
+(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo))
+
+(rvm-use-default)
 
 ;; markdown-mode
 (setq auto-mode-alist
@@ -22,9 +27,6 @@
       (cons '("\\.mkdn" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist
       (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
-
-;; use rvm’s default ruby for the current Emacs session
-(rvm-use-default)
 
 ;; revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
