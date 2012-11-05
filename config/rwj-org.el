@@ -1,20 +1,22 @@
-(require 'org)
-(require 'org-src)  ;; edit src inline
+(require 'org-install)
 (require 'htmlize)  ;; required for export
 
-(defun yas/org-very-safe-expand ()
-  (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
-
-(add-hook 'org-mode-hook
-	  (lambda ()
-	    (toggle-truncate-lines)
-	    (make-variable-buffer-local 'yas/trigger-key)
-	    (setq yas/trigger-key [tab])
-	    (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-	    (define-key yas/keymap [tab] 'yas/next-field)))
+(add-hook 'org-mode-hook 'toggle-truncate-lines)
 
 ;; Make windmove work in org-mode:
 (add-hook 'org-shiftup-final-hook 'windmove-up)
 (add-hook 'org-shiftleft-final-hook 'windmove-left)
 (add-hook 'org-shiftdown-final-hook 'windmove-down)
 (add-hook 'org-shiftright-final-hook 'windmove-right)
+
+;; Add file associations for
+(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+
+;; set directory for org files
+(setq org-agenda-files (quote ("~/Source/org")))
+
+;; Standard key bindings
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
