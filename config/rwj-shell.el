@@ -4,7 +4,7 @@
 (setq multi-term-program (expand-file-name "eshell.sh" rwj-emacs-config-dir))
 
 (defadvice ansi-term (after advise-ansi-term-coding-system)
-    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+  (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
 (ad-activate 'ansi-term)
 
 (defun rwj-term-init ()
