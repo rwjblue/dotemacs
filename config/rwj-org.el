@@ -1,8 +1,6 @@
 (require 'org-install)
 (require 'htmlize)  ;; required for export
 
-(add-hook 'org-mode-hook 'toggle-truncate-lines)
-
 ;; Make windmove work in org-mode:
 (add-hook 'org-shiftup-final-hook 'windmove-up)
 (add-hook 'org-shiftleft-final-hook 'windmove-left)
